@@ -1,4 +1,4 @@
-package com.bmj.hackday.locumapp;
+package com.bmj.hackday.locumapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

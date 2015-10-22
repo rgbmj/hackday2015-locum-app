@@ -12,25 +12,27 @@ public class ValidatorService {
 	public ValidationResponse getValidationDetails(UserName username) {
 		ValidationResponse validationResponse = null;
 		
-		switch(username.getName()){
-		case "HOSPITAL" : 
-		case "hospital" : 
-			validationResponse = new ValidationResponse(true, LocumRole.HOSPITAL);
-			break;
-		case "ravinder" :
-		case "stephen" :
-		case "rauf" :
-		case "seema" :
-		case "beverley" :
-		case "RAVINDER" :
-		case "STEPHEN" :
-		case "RAUF" :
-		case "SEEMA" :
-		case "BEVERLEY" :
-			validationResponse = new ValidationResponse(true, LocumRole.LOCUM);
-			break;
-		default: 
-			validationResponse = new ValidationResponse(false, null);
+		if (username != null) {
+			switch (username.getName()) {
+			case "HOSPITAL":
+			case "hospital":
+				validationResponse = new ValidationResponse(true, LocumRole.HOSPITAL);
+				break;
+			case "ravinder":
+			case "stephen":
+			case "rauf":
+			case "seema":
+			case "beverley":
+			case "RAVINDER":
+			case "STEPHEN":
+			case "RAUF":
+			case "SEEMA":
+			case "BEVERLEY":
+				validationResponse = new ValidationResponse(true, LocumRole.DOCTOR);
+				break;
+			default:
+				validationResponse = new ValidationResponse(false, null);
+			}
 		}
 		
 		return validationResponse;
