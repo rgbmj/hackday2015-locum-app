@@ -1,0 +1,1 @@
+pscp -v -pw iwritecode target\locumservice.jar bmjdev@pupfish01.internal.bmjgroup.com:/home/bmjdev/hackday/locumapp/

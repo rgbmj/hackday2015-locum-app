@@ -12,7 +12,7 @@ public class ValidatorService {
 	public ValidationResponse getValidationDetails(UserName username) {
 		ValidationResponse validationResponse = null;
 		
-		if (username != null) {
+		if (username != null && username.getName() != null) {
 			switch (username.getName()) {
 			case "HOSPITAL":
 			case "hospital":
