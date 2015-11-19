@@ -1,4 +1,4 @@
-package com.bmj.hackday.locumapp.conf;
+package com.bmj.hackday.locumapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +26,8 @@ public class SwaggerConfig {
 	public SwaggerSpringMvcPlugin customImplementation(){
 		return initPlugin()
 				.apiInfo(apiInfo())
-				.includePatterns("/.*");
+				.useDefaultResponseMessages(false);
+//				.includePatterns("/locumservice/*");
 	}
 
 	private SwaggerSpringMvcPlugin initPlugin() {

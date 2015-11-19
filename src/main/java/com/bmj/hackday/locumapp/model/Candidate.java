@@ -2,22 +2,29 @@ package com.bmj.hackday.locumapp.model;
 
 public class Candidate {
 
-	private String name;
+	private String id;
 	private String fullName;
 	private String imgUrl;
-	private String location;
+	private String postcode;
+	private String phone;
+	private String grade;
+	private String specialty;
+	
 
 	public Candidate(){};
 	
-	private Candidate(String name, String fullName, String imgName, String location) {
-		this.name = name;
+	private Candidate(String id, String fullName, String imgName, String postcode, String phone, String grade, String specialty) {
+		this.id = id;
 		this.fullName = fullName;
 		this.imgUrl = imgName;
-		this.location = location;
+		this.postcode = postcode;
+		this.phone = phone;
+		this.grade = grade;
+		this.specialty = specialty;
 	}
 
-	public String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
 
 	public String getFullName() {
@@ -28,12 +35,24 @@ public class Candidate {
 		return imgUrl;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getPostcode() {
+		return postcode;
 	}
 
-	public Candidate withName(String nm) {
-		name = nm;
+	public String getGrade() {
+		return grade;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public String getSpecialty() {
+		return specialty;
+	}
+
+	public Candidate withId(String id) {
+		this.id = id.toLowerCase();
 		return this;
 	}
 
@@ -47,18 +66,35 @@ public class Candidate {
 		return this;
 	}
 
-	public Candidate withLocation(String loc) {
-		location = loc;
+	public Candidate withPostcode(String postcode) {
+		this.postcode = postcode.toLowerCase().replace(" ", "");
 		return this;
 	}
 
+	public Candidate withPhone(String phone) {
+		this.phone = phone;
+		return this;
+	}
+	
+	public Candidate withGrade(String grade) {
+		this.grade = grade.toLowerCase();
+		return this;
+	}
+	
+	public Candidate withSpecialty(String specialty) {
+		this.specialty = specialty.toLowerCase();
+		return this;
+	}
+	
 	public Candidate build() {
-		assertNotNull("name", name);
+		assertNotNull("id", id);
 		assertNotNull("fullName", fullName);
 		assertNotNull("imgUrl", imgUrl);
-		assertNotNull("location", location);
+		assertNotNull("postcode", postcode);
+		assertNotNull("specialty", specialty);
+		assertNotNull("grade", grade);
 
-		return new Candidate(name, fullName, imgUrl, location);
+		return new Candidate(id, fullName, imgUrl, postcode, phone, grade, specialty);
 	}
 
 	private static void assertNotNull(String name, Object obj) {

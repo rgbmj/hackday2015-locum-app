@@ -10,7 +10,7 @@
 		'dataType' : 'json',
 		'success' : callback
 	});
-})('http://localhost:8080/getcandidates', {
+})('getcandidates', {
 	"name" : "hospital"
 }, function(data, status) {
 	alert("Data: " + JSON.stringify(data) + "\nStatus: " + status)

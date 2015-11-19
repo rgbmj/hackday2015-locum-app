@@ -1,6 +1,6 @@
 package com.bmj.hackday.locumapp.role;
 
-public enum LocumRole {
+public enum UserRole {
 	
 	DOCTOR, 
 	HOSPITAL
