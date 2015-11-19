@@ -39,7 +39,7 @@ public class SearchHandlerTest {
 
 		List<Candidate> candidates = searchHandler.getSearchedCandidates(searchParams);
 		assertNotNull("result is null", candidates);
-		assertEquals("result size does not match", 3, candidates.size());
+		assertEquals("result size does not match", 2, candidates.size());
 	}
 
 

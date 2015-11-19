@@ -6,11 +6,12 @@ public class ValidationResponse  {
 	
 	private final boolean isValid;
 	private final UserRole userRole;
+	private final String id;
 	
-	public ValidationResponse(boolean isValid, UserRole userRole) {
-		super();
+	public ValidationResponse(boolean isValid, UserRole userRole, String id) {
 		this.isValid = isValid;
 		this.userRole = userRole;
+		this.id = id;
 	}
 
 	public boolean isValid() {
@@ -19,6 +20,10 @@ public class ValidationResponse  {
 
 	public UserRole getUserRole() {
 		return userRole;
+	}
+	
+	public String getId() {
+		return id;
 	}
 	
 	
