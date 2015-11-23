@@ -13,7 +13,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.bmj.hackday.locumapp.TestApplicationConfiguration;
-import com.bmj.hackday.locumapp.model.Candidate;
+import com.bmj.hackday.locumapp.model.UserDetail;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = TestApplicationConfiguration.class)
@@ -27,7 +27,7 @@ public class SearchHandlerTest {
 	public void testGetSearchCandidates_NullRole_GivesEmpty() {
 		SearchParams searchParams = createSearchParams("consultant", "B4 7EA", null, "geriatrics");
 
-		List<Candidate> result = searchHandler.getSearchedCandidates(searchParams);
+		List<UserDetail> result = searchHandler.getSearchedCandidates(searchParams);
 		assertNotNull("result is null", result);
 		assertEquals("result is not empty", 0, result.size());
 	}
@@ -37,7 +37,7 @@ public class SearchHandlerTest {
 	public void testGetSearchCandidates_Doctors() {
 		SearchParams searchParams = createSearchParams("registrar", "B4 7EA", "doctor", "geriatrics");
 
-		List<Candidate> candidates = searchHandler.getSearchedCandidates(searchParams);
+		List<UserDetail> candidates = searchHandler.getSearchedCandidates(searchParams);
 		assertNotNull("result is null", candidates);
 		assertEquals("result size does not match", 2, candidates.size());
 	}

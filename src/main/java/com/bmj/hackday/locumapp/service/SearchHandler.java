@@ -9,8 +9,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bmj.hackday.locumapp.model.Candidate;
-import com.bmj.hackday.locumapp.model.CandidatesRepository;
+import com.bmj.hackday.locumapp.model.UserDetail;
+import com.bmj.hackday.locumapp.model.UsersRepository;
 import com.bmj.hackday.locumapp.model.SearchData;
 import com.bmj.hackday.locumapp.model.SpecialtyData;
 import com.bmj.hackday.locumapp.role.UserRole;
@@ -20,11 +20,11 @@ public class SearchHandler {
 
 	
 	@Autowired
-	CandidatesRepository candidatesRepository;
+	UsersRepository candidatesRepository;
 	
 	
-	public List<Candidate> getSearchedCandidates(SearchParams searchParams) {
-		List<Candidate> candidates = new ArrayList<>();
+	public List<UserDetail> getSearchedCandidates(SearchParams searchParams) {
+		List<UserDetail> candidates = new ArrayList<>();
 		
 		String role = searchParams.getRole();
 		if (role != null) {
@@ -42,8 +42,8 @@ public class SearchHandler {
 	}
 
 	
-	private List<Candidate> doSearch(SearchParams searchParams, UserRole userRole) {
-		List<Candidate> candidates = null;
+	private List<UserDetail> doSearch(SearchParams searchParams, UserRole userRole) {
+		List<UserDetail> candidates = null;
 
 		SearchData allRoleData = getAllRoleData(userRole);
 		if (allRoleData != null) {

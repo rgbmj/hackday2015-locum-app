@@ -11,31 +11,36 @@ import com.bmj.hackday.locumapp.validation.ValidationResponse;
 @Service
 public class ValidatorService {
 
-	private static final String[] HOSPITAL_IDS = {"bch", "bwh", "gosh", "hoe", "qeh"};
+	private static final String[] HOSPITAL_IDS = {"hospital1", "hospital2", "bch", "bwh", "gosh", "hoe", "qeh"};
 	private static final String[] DOCTOR_IDS = {"ravinder", "adrian", "alex", "caroline", "chris", "derek"};
 
 	public ValidationResponse getValidationDetails(UserName username) {
+ 		ValidationResponse response = null;
+ 		
+ 		if (username != null) {
+ 			String id = username.getName();
+ 			response = getValidationDetails(id);	
+ 		}
+
+ 		return response;
+	}
+	
+	
+	public ValidationResponse getValidationDetails(String id) {
 		ValidationResponse validationResponse = null;
-		
-		if (username != null) {
-			String id = username.getName();
-			if (id != null) {
-				if (isValid(id, HOSPITAL_IDS)) 
-					validationResponse = createHospitalResponse(id);
-				else if (isValid(id, DOCTOR_IDS)) 
-					validationResponse = createDoctorResponse(id);
-				else 
-					validationResponse = createNonValidResponse();
-			}
+
+		if (id != null) {
+			if (isValid(id, HOSPITAL_IDS)) 
+				validationResponse = createHospitalResponse(id);
+			else if (isValid(id, DOCTOR_IDS)) 
+				validationResponse = createDoctorResponse(id);
+			else 
+				validationResponse = createNonValidResponse();
 		}
-				
+
 		return validationResponse;
 	}
 
-	private boolean isValidDoctor(String id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	private boolean isValid(String name, String[] ids) {
 		boolean isValid = false;

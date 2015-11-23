@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bmj.hackday.locumapp.model.Candidate;
+import com.bmj.hackday.locumapp.model.UserDetail;
 import com.bmj.hackday.locumapp.service.CandidatesService;
 import com.bmj.hackday.locumapp.service.SearchParams;
 
@@ -19,8 +19,8 @@ public class SearchController {
     private CandidatesService candidatesService;
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-    public List<Candidate> getCandidates(@RequestBody SearchParams searchParams) {
-        return candidatesService.getMatches(searchParams);
+    public List<UserDetail> getCandidates(@RequestBody SearchParams searchParams) {
+        return candidatesService.getSoughtCandidates(searchParams);
     }
 
 

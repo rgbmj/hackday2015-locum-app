@@ -22,19 +22,19 @@ public class SearchData implements Cloneable {
 			return specialtyData.clone();
 	}
 	
-	public SearchData addCandidate(Candidate candidate) {
-		String specialty = candidate.getSpecialty();
+	public SearchData addCandidate(UserDetail userDetail) {
+		String specialty = userDetail.getSpecialty();
 		SpecialtyData specialtyData = data.get(specialty);
 		
 		if (specialtyData == null) 
-			addNewSpecialtyData(candidate);
+			addNewSpecialtyData(userDetail);
 		else 
-			specialtyData.addCandidate(candidate);
+			specialtyData.addCandidate(userDetail);
 
 		return this;
 	}
 	
-	private void addNewSpecialtyData(Candidate candidate) {
+	private void addNewSpecialtyData(UserDetail candidate) {
 		String specialty = candidate.getSpecialty();
 
 		SpecialtyData specialtyData = new SpecialtyData();

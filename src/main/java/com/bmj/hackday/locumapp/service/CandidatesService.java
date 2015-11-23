@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bmj.hackday.locumapp.model.Candidate;
-import com.bmj.hackday.locumapp.model.CandidatesRepository;
+import com.bmj.hackday.locumapp.model.UserDetail;
+import com.bmj.hackday.locumapp.model.UsersRepository;
 import com.bmj.hackday.locumapp.role.UserRole;
 
 @Component
@@ -15,14 +15,14 @@ public class CandidatesService {
 
 
 	@Autowired
-	private CandidatesRepository candidatesRepository;
+	private UsersRepository candidatesRepository;
 	
 	@Autowired
 	private SearchHandler searchHandler;
 
 
-	public List<Candidate> getAllCandidates(UserRole roleToFetch) {
-		List<Candidate> candidates = new ArrayList<Candidate>();
+	public List<UserDetail> getAllCandidates(UserRole roleToFetch) {
+		List<UserDetail> candidates = new ArrayList<UserDetail>();
 		
 		if (roleToFetch != null){
 			switch (roleToFetch) {
@@ -47,8 +47,8 @@ public class CandidatesService {
 
 
 
-	public List<Candidate> getMatches(SearchParams searchParams) {
-		List<Candidate> matches = searchHandler.getSearchedCandidates(searchParams);
+	public List<UserDetail> getSoughtCandidates(SearchParams searchParams) {
+		List<UserDetail> matches = searchHandler.getSearchedCandidates(searchParams);
 		return matches;
 	}
 

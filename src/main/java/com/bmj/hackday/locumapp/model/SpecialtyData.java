@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class SpecialtyData implements Cloneable {
 	
-	private Map<String, List<Candidate>> data;
+	private Map<String, List<UserDetail>> data;
 
 	
 	public SpecialtyData() {
@@ -15,8 +15,8 @@ public class SpecialtyData implements Cloneable {
 	}
 	
 	
-	public List<Candidate> getCandidates(String grade){
-		List<Candidate> candidates = data.get(grade);
+	public List<UserDetail> getCandidates(String grade){
+		List<UserDetail> candidates = data.get(grade);
 		if (candidates != null)
 			return new ArrayList<>(candidates);
 		else
@@ -24,9 +24,9 @@ public class SpecialtyData implements Cloneable {
 	}
 	
 	
-	public SpecialtyData addCandidate(Candidate candidate) {
+	public SpecialtyData addCandidate(UserDetail candidate) {
 		String grade = candidate.getGrade();
-		List<Candidate> candidates = data.get(grade);
+		List<UserDetail> candidates = data.get(grade);
 		
 		if (candidates == null)
 			candidates = createCandidates(grade);
@@ -44,8 +44,8 @@ public class SpecialtyData implements Cloneable {
 	}
 
 
-	private List<Candidate> createCandidates(String grade) {
-		List<Candidate> candidates = new ArrayList<>();
+	private List<UserDetail> createCandidates(String grade) {
+		List<UserDetail> candidates = new ArrayList<>();
 		data.put(grade, candidates);
 		return candidates;
 	}

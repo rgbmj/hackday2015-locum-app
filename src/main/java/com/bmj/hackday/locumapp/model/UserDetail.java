@@ -1,7 +1,10 @@
 package com.bmj.hackday.locumapp.model;
 
-public class Candidate {
+import com.bmj.hackday.locumapp.role.UserRole;
 
+public class UserDetail {
+
+	private UserRole userRole;
 	private String id;
 	private String fullName;
 	private String imgUrl;
@@ -11,9 +14,10 @@ public class Candidate {
 	private String specialty;
 	
 
-	public Candidate(){};
+	public UserDetail(){};
 	
-	private Candidate(String id, String fullName, String imgName, String postcode, String phone, String grade, String specialty) {
+	private UserDetail(UserRole userRole, String id, String fullName, String imgName, String postcode, String phone, String grade, String specialty) {
+		this.userRole = userRole;
 		this.id = id;
 		this.fullName = fullName;
 		this.imgUrl = imgName;
@@ -23,70 +27,80 @@ public class Candidate {
 		this.specialty = specialty;
 	}
 
+	public UserRole getUserRole() {
+		return this.userRole;
+	}
+	
 	public String getId() {
-		return id;
+		return this.id;
 	}
 
 	public String getFullName() {
-		return fullName;
+		return this.fullName;
 	}
 
 	public String getImg() {
-		return imgUrl;
+		return this.imgUrl;
 	}
 
 	public String getPostcode() {
-		return postcode;
+		return this.postcode;
 	}
 
 	public String getGrade() {
-		return grade;
+		return this.grade;
 	}
 
 	public String getPhone() {
-		return phone;
+		return this.phone;
 	}
 
 	public String getSpecialty() {
-		return specialty;
+		return this.specialty;
+	}
+	
+	public UserDetail withUserRole(UserRole userRole) {
+		this.userRole = userRole;
+		return this;
 	}
 
-	public Candidate withId(String id) {
+	public UserDetail withId(String id) {
 		this.id = id.toLowerCase();
 		return this;
 	}
 
-	public Candidate withFullName(String fnm) {
+	public UserDetail withFullName(String fnm) {
 		fullName = fnm;
 		return this;
 	}
 
-	public Candidate withImg(String im) {
+	public UserDetail withImg(String im) {
 		imgUrl = im;
 		return this;
 	}
 
-	public Candidate withPostcode(String postcode) {
+	public UserDetail withPostcode(String postcode) {
 		this.postcode = postcode.toLowerCase().replace(" ", "");
 		return this;
 	}
 
-	public Candidate withPhone(String phone) {
+	public UserDetail withPhone(String phone) {
 		this.phone = phone;
 		return this;
 	}
 	
-	public Candidate withGrade(String grade) {
+	public UserDetail withGrade(String grade) {
 		this.grade = grade.toLowerCase();
 		return this;
 	}
 	
-	public Candidate withSpecialty(String specialty) {
+	public UserDetail withSpecialty(String specialty) {
 		this.specialty = specialty.toLowerCase();
 		return this;
 	}
 	
-	public Candidate build() {
+	public UserDetail build() {
+		assertNotNull("userRole", userRole);
 		assertNotNull("id", id);
 		assertNotNull("fullName", fullName);
 		assertNotNull("imgUrl", imgUrl);
@@ -94,7 +108,7 @@ public class Candidate {
 		assertNotNull("specialty", specialty);
 		assertNotNull("grade", grade);
 
-		return new Candidate(id, fullName, imgUrl, postcode, phone, grade, specialty);
+		return new UserDetail(userRole, id, fullName, imgUrl, postcode, phone, grade, specialty);
 	}
 
 	private static void assertNotNull(String name, Object obj) {
