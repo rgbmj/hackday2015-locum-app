@@ -55,6 +55,12 @@ public class CandidatesController {
 	public Set<String> getAllGrades(){
 		return candidatesService.getAllGrades();
 	}
+	
+	
+	@RequestMapping(value = "/getAllSpecialties", method = GET)
+	public Set<String> getAllSpecialties(){
+		return candidatesService.getAllSpecialties();
+	}
 
 
 }

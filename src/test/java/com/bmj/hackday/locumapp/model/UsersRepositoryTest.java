@@ -45,4 +45,37 @@ public class UsersRepositoryTest extends SpringJunitTestFixture {
 		assertEquals(expected, results);
 	}
 
+	
+	@Test
+	public void testGetAllHospitalsSpecialties() {
+		Set<String> results = usersRepository.getAllHospitalsSpecialties();
+		
+		assertNotNull(results);
+		assertEquals(2, results.size());
+		
+		Set<String> expected = new TreeSet<>();
+		expected.add("geriatrics");
+		expected.add("paediatrics");
+		
+		assertEquals(expected, results);
+	}
+	
+	
+	@Test
+	public void testGetAllDoctorsSpecialties() {
+		Set<String> results = usersRepository.getAllDoctorsSpecialties();
+		
+		assertNotNull(results);
+		assertEquals(5, results.size());
+		
+		Set<String> expected = new TreeSet<>();
+		expected.add("geriatrics");
+		expected.add("neurology");
+		expected.add("oncology");
+		expected.add("paediatrics");
+		expected.add("rheumatology");
+		
+		assertEquals(expected, results);
+	}
+
 }

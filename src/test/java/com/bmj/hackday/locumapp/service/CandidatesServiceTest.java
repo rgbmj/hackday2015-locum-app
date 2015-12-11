@@ -7,9 +7,7 @@
 
 package com.bmj.hackday.locumapp.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.List;
 import java.util.Set;
@@ -37,7 +35,7 @@ public class CandidatesServiceTest extends SpringJunitTestFixture {
 		List<UserDetail> candidates = candidatesService.getAllCandidates(null);
 		assertTrue("candidates should be not null and length equal to 0", candidates != null && candidates.size() == 0);
 	}
-	
+
 	@Test
 	public void testGetCandidates_NullRoleToSearch_GivesEmptyList() throws Exception {
 		UserRole roleToSearch = null;
@@ -45,31 +43,45 @@ public class CandidatesServiceTest extends SpringJunitTestFixture {
 		assertTrue("candidates should be not null and length equal to 0", candidates != null && candidates.size() == 0);
 	}
 
-	
 	@Test
 	public void testGetCandidates_HospitalRoleToSearch_GivesListOfHospitals() throws Exception {
 		UserRole userrole = UserRole.HOSPITAL;
 		List<UserDetail> candidates = candidatesService.getAllCandidates(userrole);
 		assertEquals("Candidates list size does not match", 5, candidates.size());
 	}
-	
-	
+
 	@Test
 	public void testGetAllGrades() throws Exception {
 		assertNotNull(candidatesService);
 		Set<String> result = candidatesService.getAllGrades();
-		
+
 		assertNotNull(result);
 		assertEquals(3, result.size());
-		
+
 		Set<String> expected = new TreeSet<>();
 		expected.add("consultant");
 		expected.add("foundation_2");
 		expected.add("registrar");
-		
+
 		assertEquals(expected, result);
 	}
 
-	
-	
+	@Test
+	public void testGetAllSpecialties() throws Exception {
+		assertNotNull(candidatesService);
+		Set<String> result = candidatesService.getAllSpecialties();
+
+		assertNotNull(result);
+		assertTrue(result.size() > 0);
+
+		Set<String> expected = new TreeSet<>();
+		expected.add("geriatrics");
+		expected.add("neurology");
+		expected.add("oncology");
+		expected.add("paediatrics");
+		expected.add("rheumatology");
+
+		assertEquals(expected, result);
+	}
+
 }

@@ -3,7 +3,6 @@ package com.bmj.hackday.locumapp.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -66,6 +65,20 @@ public class CandidatesService {
 			grades.addAll(candidatesRepository.getAllDoctorsGrades());
 		
 		return grades;
+	}
+
+
+
+
+
+	public Set<String> getAllSpecialties() {
+		Set<String> specialties = null;
+		specialties = candidatesRepository.getAllHospitalsSpecialties();
+		
+		if (specialties != null)
+			specialties.addAll(candidatesRepository.getAllDoctorsSpecialties());
+		
+		return specialties;
 	}
 
 }

@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class SearchData implements Cloneable {
 	
-	final private String name;
-	
 	private Map<String, GradesData> data;
 
-	public SearchData(String name) {
-		this.name = name;
+	public SearchData() {
 		this.data = new TreeMap<>();
 	}
 	
 	public GradesData getGradesData(String specialty) {
-		GradesData specialtyData = data.get(specialty);
-		if (specialtyData == null)
+		GradesData gradesData = data.get(specialty);
+		if (gradesData == null)
 			return null;
 		else
-			return specialtyData.clone();
+			return gradesData.clone();
 	}
 	
 	public List<GradesData> getAllGradesData(){
 		return new ArrayList<>(data.values());
 	}
+	
 	
 	public SearchData addCandidate(UserDetail userDetail) {
 		String specialty = userDetail.getSpecialty();
@@ -52,9 +52,13 @@ public class SearchData implements Cloneable {
 
 	@Override
 	public SearchData clone() {
-		SearchData clone = new SearchData(this.name);
+		SearchData clone = new SearchData();
 		clone.data = new HashMap<>(this.data);
 		return clone;
+	}
+
+	public Set<String> getAllSpecialties() {
+		return new TreeSet<>(data.keySet());
 	}
 
 }
