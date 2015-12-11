@@ -1,46 +1,53 @@
 package com.bmj.hackday.locumapp.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class SearchData implements Cloneable {
 	
 	final private String name;
 	
-	private Map<String, SpecialtyData> data;
+	private Map<String, GradesData> data;
 
 	public SearchData(String name) {
 		this.name = name;
-		this.data = new HashMap<>();
+		this.data = new TreeMap<>();
 	}
 	
-	public SpecialtyData getSpecialtyData(String specialty) {
-		SpecialtyData specialtyData = data.get(specialty);
+	public GradesData getGradesData(String specialty) {
+		GradesData specialtyData = data.get(specialty);
 		if (specialtyData == null)
 			return null;
 		else
 			return specialtyData.clone();
 	}
 	
+	public List<GradesData> getAllGradesData(){
+		return new ArrayList<>(data.values());
+	}
+	
 	public SearchData addCandidate(UserDetail userDetail) {
 		String specialty = userDetail.getSpecialty();
-		SpecialtyData specialtyData = data.get(specialty);
+		GradesData specialtyData = data.get(specialty);
 		
 		if (specialtyData == null) 
-			addNewSpecialtyData(userDetail);
+			addNewSpecialty(userDetail);
 		else 
 			specialtyData.addCandidate(userDetail);
 
 		return this;
 	}
 	
-	private void addNewSpecialtyData(UserDetail candidate) {
+	private void addNewSpecialty(UserDetail candidate) {
 		String specialty = candidate.getSpecialty();
 
-		SpecialtyData specialtyData = new SpecialtyData();
-		specialtyData.addCandidate(candidate);
+		GradesData gradesData = new GradesData();
+		gradesData.addCandidate(candidate);
 		
-		data.put(specialty, specialtyData);
+		data.put(specialty, gradesData);
 	}
 
 	@Override

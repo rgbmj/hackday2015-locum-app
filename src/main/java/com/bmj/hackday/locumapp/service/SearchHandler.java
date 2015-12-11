@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import com.bmj.hackday.locumapp.model.UserDetail;
 import com.bmj.hackday.locumapp.model.UsersRepository;
 import com.bmj.hackday.locumapp.model.SearchData;
-import com.bmj.hackday.locumapp.model.SpecialtyData;
+import com.bmj.hackday.locumapp.model.GradesData;
 import com.bmj.hackday.locumapp.role.UserRole;
 
 @Component
@@ -47,7 +47,7 @@ public class SearchHandler {
 
 		SearchData allRoleData = getAllRoleData(userRole);
 		if (allRoleData != null) {
-			SpecialtyData specialtyData = allRoleData.getSpecialtyData(searchParams.getSpecialty());
+			GradesData specialtyData = allRoleData.getGradesData(searchParams.getSpecialty());
 			if (specialtyData != null) {
 				candidates = specialtyData.getCandidates(searchParams.getGrade());
 			}

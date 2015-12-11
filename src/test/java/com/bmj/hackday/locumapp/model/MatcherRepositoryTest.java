@@ -9,19 +9,12 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.bmj.hackday.locumapp.TestApplicationConfiguration;
+import com.bmj.hackday.locumapp.SpringJunitTestFixture;
 import com.bmj.hackday.locumapp.role.UserRole;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = TestApplicationConfiguration.class)
-@ActiveProfiles("test")
-public class MatcherRepositoryTest {
+public class MatcherRepositoryTest extends SpringJunitTestFixture{
 
 	
 	@Autowired

@@ -2,6 +2,8 @@ package com.bmj.hackday.locumapp.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -50,6 +52,20 @@ public class CandidatesService {
 	public List<UserDetail> getSoughtCandidates(SearchParams searchParams) {
 		List<UserDetail> matches = searchHandler.getSearchedCandidates(searchParams);
 		return matches;
+	}
+
+
+
+
+
+	public Set<String> getAllGrades() {
+		Set<String> grades = null;
+		grades = candidatesRepository.getAllHospitalsGrades();
+		
+		if (grades != null)
+			grades.addAll(candidatesRepository.getAllDoctorsGrades());
+		
+		return grades;
 	}
 
 }

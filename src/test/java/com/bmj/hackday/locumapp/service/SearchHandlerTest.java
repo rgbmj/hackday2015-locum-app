@@ -6,19 +6,12 @@ import static org.junit.Assert.assertNotNull;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.bmj.hackday.locumapp.TestApplicationConfiguration;
+import com.bmj.hackday.locumapp.SpringJunitTestFixture;
 import com.bmj.hackday.locumapp.model.UserDetail;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = TestApplicationConfiguration.class)
-@ActiveProfiles("test")
-public class SearchHandlerTest {
+public class SearchHandlerTest extends SpringJunitTestFixture {
 
 	@Autowired
 	SearchHandler searchHandler;

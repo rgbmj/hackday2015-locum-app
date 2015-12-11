@@ -8,26 +8,22 @@
 package com.bmj.hackday.locumapp.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.bmj.hackday.locumapp.TestApplicationConfiguration;
+import com.bmj.hackday.locumapp.SpringJunitTestFixture;
 import com.bmj.hackday.locumapp.model.UserDetail;
 import com.bmj.hackday.locumapp.model.UserName;
 import com.bmj.hackday.locumapp.role.UserRole;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = TestApplicationConfiguration.class)
-@ActiveProfiles("test")
-public class CandidatesServiceTest {
+public class CandidatesServiceTest extends SpringJunitTestFixture {
 
 	@Autowired
 	private CandidatesService candidatesService;
@@ -54,9 +50,24 @@ public class CandidatesServiceTest {
 	public void testGetCandidates_HospitalRoleToSearch_GivesListOfHospitals() throws Exception {
 		UserRole userrole = UserRole.HOSPITAL;
 		List<UserDetail> candidates = candidatesService.getAllCandidates(userrole);
-		assertEquals("Candidates list size does not match", 6, candidates.size());
+		assertEquals("Candidates list size does not match", 5, candidates.size());
+	}
+	
+	
+	@Test
+	public void testGetAllGrades() throws Exception {
+		assertNotNull(candidatesService);
+		Set<String> result = candidatesService.getAllGrades();
 		
+		assertNotNull(result);
+		assertEquals(3, result.size());
 		
+		Set<String> expected = new TreeSet<>();
+		expected.add("consultant");
+		expected.add("foundation_2");
+		expected.add("registrar");
+		
+		assertEquals(expected, result);
 	}
 
 	

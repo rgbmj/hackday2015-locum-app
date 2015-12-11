@@ -2,26 +2,20 @@ package com.bmj.hackday.locumapp.service;
 
 import static com.bmj.hackday.locumapp.role.UserRole.DOCTOR;
 import static com.bmj.hackday.locumapp.role.UserRole.HOSPITAL;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.bmj.hackday.locumapp.TestApplicationConfiguration;
+import com.bmj.hackday.locumapp.SpringJunitTestFixture;
 import com.bmj.hackday.locumapp.model.CandidatesChoices;
 import com.bmj.hackday.locumapp.model.UserDetail;
 import com.bmj.hackday.locumapp.role.UserRole;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = TestApplicationConfiguration.class)
-@ActiveProfiles("test")
-public class MatcherServiceTest {
+public class MatcherServiceTest extends SpringJunitTestFixture {
 
 	@Autowired
 	private MatcherService matcherService;
@@ -29,8 +23,8 @@ public class MatcherServiceTest {
 	@Test
 	public void testGetMatches() {
 
-		String hospitalId = "hospital1";
-		String docId = "doc1";
+		String hospitalId = "bch";
+		String docId = "adrian";
 
 		CandidatesChoices hospitalChoices = createCandidatesChoices(hospitalId, HOSPITAL, docId, "someDoctor");
 		CandidatesChoices doctorChoices = createCandidatesChoices(docId, DOCTOR, hospitalId, "someHospital");
@@ -52,9 +46,13 @@ public class MatcherServiceTest {
 
 
 	private void assertChosen(String type, String idToTest, List<UserDetail> chosen) {
+		assertNotNull("Chosen is null", chosen);
+
 		boolean contains = false;
-		for (UserDetail choice : chosen)
+		for (UserDetail choice : chosen) {
+			assertNotNull("Choice is null", choice);
 			contains = choice.getId().equals(idToTest);
+		}
 
 		assertTrue(type + " ID '" + idToTest + "' not found in matches.", contains);
 

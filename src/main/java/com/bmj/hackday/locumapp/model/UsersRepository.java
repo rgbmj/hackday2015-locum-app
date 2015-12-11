@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.springframework.stereotype.Component;
 
@@ -72,7 +74,7 @@ public class UsersRepository {
 	private void initHospitals() {
 		hospitalsSearchData = new SearchData("hospitals");
 		allHospitalsCandidates = new HashMap<>();
-		addUser(buildCandidate(HOSPITAL, "Hospital 1", "", "", "hospital1", "", "", ""));
+//		addUser(buildCandidate(HOSPITAL, "Hospital 1", "", "", "hospital1", "", "", ""));
 		addUser(buildCandidate(HOSPITAL, "Birmingham Childrens Hospital", "/img/hospitals/BCH.png", "B4 6NH", "bch", "registrar", "0121 333 9999", "paediatrics"));
 		addUser(buildCandidate(HOSPITAL, "Birmingham Womens Hospital", "/img/hospitals/BWH.png", "B15 2TG", "bwh", "registrar", "0121 472 1377", "geriatrics"));
 		addUser(buildCandidate(HOSPITAL, "Great Ormond Street Hospital", "/img/hospitals/GOSH.jpg", "WC1N 3JH", "gosh", "consultant", "020 7405 9200", "paediatrics"));
@@ -84,11 +86,11 @@ public class UsersRepository {
 	private void initDoctors() {
 		doctorsSearchData = new SearchData("doctors");
 		allDoctorsCandidates = new HashMap<>();
-		addUser(buildCandidate(DOCTOR, "Doctor 1", "", "", "doc1", "", "", ""));
+//		addUser(buildCandidate(DOCTOR, "Doctor 1", "", "", "doc1", "", "", ""));
 		addUser(buildCandidate(DOCTOR, "Ravinder Gill", "/img/doctors/RavinderGill.jpg", "B6 8AX", "ravinder", "registrar", "07712096515", "geriatrics"));
 		addUser(buildCandidate(DOCTOR, "Adrian Harris", "/img/doctors/AdrianHarris.jpg", "B4 6NJ", "adrian", "registrar", "07912345678", "paediatrics"));
 		addUser(buildCandidate(DOCTOR, "Alex Walkinshaw", "/img/doctors/AlexWalkinshaw.png", "B8 6NH", "alex", "consultant", "07711345956", "oncology"));
-		addUser(buildCandidate(DOCTOR, "Caroline Webster", "/img/doctors/CarolineWebster.jpg", "location", "caroline", "registrar", "07911345956", "neurology"));
+		addUser(buildCandidate(DOCTOR, "Caroline Webster", "/img/doctors/CarolineWebster.jpg", "B11 9NH", "caroline", "registrar", "07911345956", "neurology"));
 		addUser(buildCandidate(DOCTOR, "Chris Colquhoun", "/img/doctors/ChrisColquhoun.png", "location", "chris", "foundation_2", "07811305956", "rheumatology"));
 		addUser(buildCandidate(DOCTOR, "Derek Thompson", "/img/doctors/DerekThompson.jpg", "location", "derek","registrar", "07811345906", "geriatrics"));
 	}
@@ -121,5 +123,23 @@ public class UsersRepository {
 		doctorsSearchData.addCandidate(userDetail);
 	}
 
+	public Set<String> getAllHospitalsGrades() {
+		return getAllGrades(hospitalsSearchData);
+	}
+
+
+	public Set<String> getAllDoctorsGrades() {
+		return getAllGrades(doctorsSearchData);
+	}
+
+	private Set<String> getAllGrades(SearchData searchData) {
+		Set<String> allHospitalGrades= new TreeSet<>();
+		
+		List<GradesData> allGradesData = searchData.getAllGradesData();
+		for (GradesData gradesData : allGradesData) 
+			allHospitalGrades.addAll(gradesData.getAllGrades());
+		
+		return allHospitalGrades;
+	}
 }
 
