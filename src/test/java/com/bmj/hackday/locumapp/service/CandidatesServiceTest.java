@@ -7,7 +7,9 @@
 
 package com.bmj.hackday.locumapp.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 import java.util.Set;
@@ -17,6 +19,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bmj.hackday.locumapp.SpringJunitTestFixture;
+import com.bmj.hackday.locumapp.model.Grade;
 import com.bmj.hackday.locumapp.model.UserDetail;
 import com.bmj.hackday.locumapp.model.UserName;
 import com.bmj.hackday.locumapp.role.UserRole;
@@ -53,15 +56,15 @@ public class CandidatesServiceTest extends SpringJunitTestFixture {
 	@Test
 	public void testGetAllGrades() throws Exception {
 		assertNotNull(candidatesService);
-		Set<String> result = candidatesService.getAllGrades();
+		Set<Grade> result = candidatesService.getAllGrades();
 
 		assertNotNull(result);
 		assertEquals(3, result.size());
 
-		Set<String> expected = new TreeSet<>();
-		expected.add("consultant");
-		expected.add("foundation_2");
-		expected.add("registrar");
+		Set<Grade> expected = new TreeSet<>();
+		expected.add(new Grade("consultant"));
+		expected.add(new Grade("foundation_2"));
+		expected.add(new Grade("registrar"));
 
 		assertEquals(expected, result);
 	}

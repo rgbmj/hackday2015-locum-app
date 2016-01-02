@@ -10,7 +10,7 @@ import java.util.TreeSet;
 
 public class GradesData implements Cloneable {
 	
-	private Map<String, List<UserDetail>> data;
+	private Map<Grade, List<UserDetail>> data;
 
 	
 	public GradesData() {
@@ -18,8 +18,8 @@ public class GradesData implements Cloneable {
 	}
 	
 	
-	public List<UserDetail> getCandidates(String grade){
-		List<UserDetail> candidates = data.get(grade);
+	public List<UserDetail> getCandidates(String gradeName){
+		List<UserDetail> candidates = data.get(new Grade(gradeName));
 		if (candidates != null)
 			return new ArrayList<>(candidates);
 		else
@@ -28,7 +28,8 @@ public class GradesData implements Cloneable {
 	
 	
 	public GradesData addCandidate(UserDetail candidate) {
-		String grade = candidate.getGrade();
+		Grade grade = new Grade(candidate.getGrade());
+		
 		List<UserDetail> candidates = data.get(grade);
 		
 		if (candidates == null)
@@ -47,14 +48,14 @@ public class GradesData implements Cloneable {
 	}
 
 
-	private List<UserDetail> createCandidates(String grade) {
+	private List<UserDetail> createCandidates(Grade grade) {
 		List<UserDetail> candidates = new ArrayList<>();
 		data.put(grade, candidates);
 		return candidates;
 	}
 
 
-	public Set<String> getAllGrades() {
+	public Set<Grade> getAllGrades() {
 		return new TreeSet<>(data.keySet());
 	}
 	

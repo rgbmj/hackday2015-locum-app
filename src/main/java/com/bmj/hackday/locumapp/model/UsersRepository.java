@@ -121,16 +121,16 @@ public class UsersRepository {
 		doctorsSearchData.addCandidate(userDetail);
 	}
 
-	public Set<String> getAllHospitalsGrades() {
+	public Set<Grade> getAllHospitalsGrades() {
 		return getAllGrades(hospitalsSearchData);
 	}
 
-	public Set<String> getAllDoctorsGrades() {
+	public Set<Grade> getAllDoctorsGrades() {
 		return getAllGrades(doctorsSearchData);
 	}
 
-	private Set<String> getAllGrades(SearchData searchData) {
-		Set<String> grades = new TreeSet<>();
+	private Set<Grade> getAllGrades(SearchData searchData) {
+		Set<Grade> grades = new TreeSet<>();
 
 		List<GradesData> allGradesData = searchData.getAllGradesData();
 		for (GradesData gradesData : allGradesData)

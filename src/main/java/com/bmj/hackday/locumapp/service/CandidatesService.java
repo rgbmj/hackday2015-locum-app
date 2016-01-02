@@ -7,6 +7,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.bmj.hackday.locumapp.model.Grade;
 import com.bmj.hackday.locumapp.model.UserDetail;
 import com.bmj.hackday.locumapp.model.UsersRepository;
 import com.bmj.hackday.locumapp.role.UserRole;
@@ -57,8 +58,8 @@ public class CandidatesService {
 
 
 
-	public Set<String> getAllGrades() {
-		Set<String> grades = null;
+	public Set<Grade> getAllGrades() {
+		Set<Grade> grades = null;
 		grades = candidatesRepository.getAllHospitalsGrades();
 		
 		if (grades != null)

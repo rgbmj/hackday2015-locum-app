@@ -17,14 +17,14 @@ public class UsersRepositoryTest extends SpringJunitTestFixture {
 	
 	@Test
 	public void testGetAllHospitalsGrades() {
-		Set<String> results = usersRepository.getAllHospitalsGrades();
+		Set<Grade> results = usersRepository.getAllHospitalsGrades();
 
 		assertNotNull(results);
 		assertEquals(2, results.size());
 		
-		Set<String> expected = new TreeSet<>();
-		expected.add("consultant");
-		expected.add("registrar");
+		Set<Grade> expected = new TreeSet<>();
+		expected.add(new Grade("consultant"));
+		expected.add(new Grade("registrar"));
 		
 		assertEquals(expected, results);
 	}
@@ -32,15 +32,15 @@ public class UsersRepositoryTest extends SpringJunitTestFixture {
 	
 	@Test
 	public void testGetAllDoctorsGrades() {
-		Set<String> results = usersRepository.getAllDoctorsGrades();
+		Set<Grade> results = usersRepository.getAllDoctorsGrades();
 		
 		assertNotNull(results);
 		assertEquals(3, results.size());
 		
-		Set<String> expected = new TreeSet<>();
-		expected.add("consultant");
-		expected.add("foundation_2");
-		expected.add("registrar");
+		Set<Grade> expected = new TreeSet<>();
+		expected.add(new Grade("consultant"));
+		expected.add(new Grade("foundation_2"));
+		expected.add(new Grade("registrar"));
 		
 		assertEquals(expected, results);
 	}

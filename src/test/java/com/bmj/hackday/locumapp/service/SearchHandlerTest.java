@@ -31,7 +31,7 @@ public class SearchHandlerTest extends SpringJunitTestFixture {
 		SearchParams searchParams = createSearchParams("registrar", "B4 7EA", "doctor", "geriatrics");
 
 		List<UserDetail> candidates = searchHandler.getSearchedCandidates(searchParams);
-		assertNotNull("result is null", candidates);
+		assertNotNull("Candidates list is null", candidates);
 		assertEquals("result size does not match", 2, candidates.size());
 	}
 
