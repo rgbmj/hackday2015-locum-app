@@ -1,6 +1,7 @@
 package com.bmj.hackday.locumapp.model;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.Set;
 import java.util.TreeSet;
@@ -9,6 +10,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bmj.hackday.locumapp.SpringJunitTestFixture;
+import com.bmj.hackday.locumapp.model.bean.Grade;
+import com.bmj.hackday.locumapp.model.bean.Specialty;
 
 public class UsersRepositoryTest extends SpringJunitTestFixture {
 
@@ -48,14 +51,14 @@ public class UsersRepositoryTest extends SpringJunitTestFixture {
 	
 	@Test
 	public void testGetAllHospitalsSpecialties() {
-		Set<String> results = usersRepository.getAllHospitalsSpecialties();
+		Set<Specialty> results = usersRepository.getAllHospitalsSpecialties();
 		
 		assertNotNull(results);
 		assertEquals(2, results.size());
 		
-		Set<String> expected = new TreeSet<>();
-		expected.add("geriatrics");
-		expected.add("paediatrics");
+		Set<Specialty> expected = new TreeSet<>();
+		expected.add(new Specialty("geriatrics"));
+		expected.add(new Specialty("paediatrics"));
 		
 		assertEquals(expected, results);
 	}
@@ -63,17 +66,17 @@ public class UsersRepositoryTest extends SpringJunitTestFixture {
 	
 	@Test
 	public void testGetAllDoctorsSpecialties() {
-		Set<String> results = usersRepository.getAllDoctorsSpecialties();
+		Set<Specialty> results = usersRepository.getAllDoctorsSpecialties();
 		
 		assertNotNull(results);
 		assertEquals(5, results.size());
 		
-		Set<String> expected = new TreeSet<>();
-		expected.add("geriatrics");
-		expected.add("neurology");
-		expected.add("oncology");
-		expected.add("paediatrics");
-		expected.add("rheumatology");
+		Set<Specialty> expected = new TreeSet<>();
+		expected.add(new Specialty("geriatrics"));
+		expected.add(new Specialty("neurology"));
+		expected.add(new Specialty("oncology"));
+		expected.add(new Specialty("paediatrics"));
+		expected.add(new Specialty("rheumatology"));
 		
 		assertEquals(expected, results);
 	}

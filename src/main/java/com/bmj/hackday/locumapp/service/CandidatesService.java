@@ -7,9 +7,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bmj.hackday.locumapp.model.Grade;
 import com.bmj.hackday.locumapp.model.UserDetail;
 import com.bmj.hackday.locumapp.model.UsersRepository;
+import com.bmj.hackday.locumapp.model.bean.Grade;
+import com.bmj.hackday.locumapp.model.bean.Specialty;
 import com.bmj.hackday.locumapp.role.UserRole;
 
 @Component
@@ -59,8 +60,7 @@ public class CandidatesService {
 
 
 	public Set<Grade> getAllGrades() {
-		Set<Grade> grades = null;
-		grades = candidatesRepository.getAllHospitalsGrades();
+		Set<Grade> grades = candidatesRepository.getAllHospitalsGrades();
 		
 		if (grades != null)
 			grades.addAll(candidatesRepository.getAllDoctorsGrades());
@@ -72,9 +72,8 @@ public class CandidatesService {
 
 
 
-	public Set<String> getAllSpecialties() {
-		Set<String> specialties = null;
-		specialties = candidatesRepository.getAllHospitalsSpecialties();
+	public Set<Specialty> getAllSpecialties() {
+		Set<Specialty> specialties = candidatesRepository.getAllHospitalsSpecialties();
 		
 		if (specialties != null)
 			specialties.addAll(candidatesRepository.getAllDoctorsSpecialties());

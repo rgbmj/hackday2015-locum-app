@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import com.bmj.hackday.locumapp.model.bean.Grade;
+
 public class GradesData implements Cloneable {
 	
 	private Map<Grade, List<UserDetail>> data;

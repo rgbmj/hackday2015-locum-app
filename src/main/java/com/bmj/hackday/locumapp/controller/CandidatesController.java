@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bmj.hackday.locumapp.model.Grade;
 import com.bmj.hackday.locumapp.model.UserDetail;
 import com.bmj.hackday.locumapp.model.UserName;
+import com.bmj.hackday.locumapp.model.bean.Grade;
+import com.bmj.hackday.locumapp.model.bean.Specialty;
 import com.bmj.hackday.locumapp.role.UserRole;
 import com.bmj.hackday.locumapp.service.CandidatesService;
 import com.bmj.hackday.locumapp.service.ValidatorService;
@@ -59,7 +60,7 @@ public class CandidatesController {
 	
 	
 	@RequestMapping(value = "/getAllSpecialties", method = GET)
-	public Set<String> getAllSpecialties(){
+	public Set<Specialty> getAllSpecialties(){
 		return candidatesService.getAllSpecialties();
 	}
 

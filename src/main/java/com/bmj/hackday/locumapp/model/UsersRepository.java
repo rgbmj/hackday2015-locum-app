@@ -12,6 +12,8 @@ import java.util.TreeSet;
 
 import org.springframework.stereotype.Component;
 
+import com.bmj.hackday.locumapp.model.bean.Grade;
+import com.bmj.hackday.locumapp.model.bean.Specialty;
 import com.bmj.hackday.locumapp.role.UserRole;
 
 @Component
@@ -139,11 +141,11 @@ public class UsersRepository {
 		return grades;
 	}
 
-	public Set<String> getAllHospitalsSpecialties() {
+	public Set<Specialty> getAllHospitalsSpecialties() {
 		return hospitalsSearchData.getAllSpecialties();
 	}
 
-	public Set<String> getAllDoctorsSpecialties() {
+	public Set<Specialty> getAllDoctorsSpecialties() {
 		return doctorsSearchData.getAllSpecialties();
 	}
 }

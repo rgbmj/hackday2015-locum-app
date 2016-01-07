@@ -19,9 +19,10 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bmj.hackday.locumapp.SpringJunitTestFixture;
-import com.bmj.hackday.locumapp.model.Grade;
 import com.bmj.hackday.locumapp.model.UserDetail;
 import com.bmj.hackday.locumapp.model.UserName;
+import com.bmj.hackday.locumapp.model.bean.Grade;
+import com.bmj.hackday.locumapp.model.bean.Specialty;
 import com.bmj.hackday.locumapp.role.UserRole;
 
 public class CandidatesServiceTest extends SpringJunitTestFixture {
@@ -72,17 +73,17 @@ public class CandidatesServiceTest extends SpringJunitTestFixture {
 	@Test
 	public void testGetAllSpecialties() throws Exception {
 		assertNotNull(candidatesService);
-		Set<String> result = candidatesService.getAllSpecialties();
+		Set<Specialty> result = candidatesService.getAllSpecialties();
 
 		assertNotNull(result);
 		assertTrue(result.size() > 0);
 
-		Set<String> expected = new TreeSet<>();
-		expected.add("geriatrics");
-		expected.add("neurology");
-		expected.add("oncology");
-		expected.add("paediatrics");
-		expected.add("rheumatology");
+		Set<Specialty> expected = new TreeSet<>();
+		expected.add(new Specialty("geriatrics"));
+		expected.add(new Specialty("neurology"));
+		expected.add(new Specialty("oncology"));
+		expected.add(new Specialty("paediatrics"));
+		expected.add(new Specialty("rheumatology"));
 
 		assertEquals(expected, result);
 	}
