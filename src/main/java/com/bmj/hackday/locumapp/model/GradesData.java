@@ -12,7 +12,7 @@ import com.bmj.hackday.locumapp.model.bean.Grade;
 
 public class GradesData implements Cloneable {
 	
-	private Map<Grade, List<UserDetail>> data;
+	private Map<String, List<UserDetail>> data;
 
 	
 	public GradesData() {
@@ -21,7 +21,7 @@ public class GradesData implements Cloneable {
 	
 	
 	public List<UserDetail> getCandidates(String gradeName){
-		List<UserDetail> candidates = data.get(new Grade(gradeName));
+		List<UserDetail> candidates = data.get(gradeName);
 		if (candidates != null)
 			return new ArrayList<>(candidates);
 		else
@@ -30,7 +30,7 @@ public class GradesData implements Cloneable {
 	
 	
 	public GradesData addCandidate(UserDetail candidate) {
-		Grade grade = new Grade(candidate.getGrade());
+		String grade = candidate.getGrade();
 		
 		List<UserDetail> candidates = data.get(grade);
 		
@@ -50,17 +50,21 @@ public class GradesData implements Cloneable {
 	}
 
 
-	private List<UserDetail> createCandidates(Grade grade) {
+	public Set<String> getAllGrades() {
+		return new TreeSet<>(data.keySet());
+	}
+
+
+	@Override
+	public String toString() {
+		return "GradesData [data=" + data + "]";
+	}
+	
+
+	private List<UserDetail> createCandidates(String grade) {
 		List<UserDetail> candidates = new ArrayList<>();
 		data.put(grade, candidates);
 		return candidates;
 	}
-
-
-	public Set<Grade> getAllGrades() {
-		return new TreeSet<>(data.keySet());
-	}
-	
-
 }
 

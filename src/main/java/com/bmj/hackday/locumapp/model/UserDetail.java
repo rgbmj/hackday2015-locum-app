@@ -111,6 +111,12 @@ public class UserDetail {
 		return new UserDetail(userRole, id, fullName, imgUrl, postcode, phone, grade, specialty);
 	}
 
+	@Override
+	public String toString() {
+		return "UserDetail [userRole=" + userRole + ", id=" + id + ", fullName=" + fullName + ", imgUrl=" + imgUrl
+				+ ", postcode=" + postcode + ", phone=" + phone + ", grade=" + grade + ", specialty=" + specialty + "]";
+	}
+
 	private static void assertNotNull(String name, Object obj) {
 		if (obj == null)
 			throw new RuntimeException("Object " + name + " is null.");

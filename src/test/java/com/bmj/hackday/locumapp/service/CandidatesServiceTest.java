@@ -21,8 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.bmj.hackday.locumapp.SpringJunitTestFixture;
 import com.bmj.hackday.locumapp.model.UserDetail;
 import com.bmj.hackday.locumapp.model.UserName;
-import com.bmj.hackday.locumapp.model.bean.Grade;
-import com.bmj.hackday.locumapp.model.bean.Specialty;
 import com.bmj.hackday.locumapp.role.UserRole;
 
 public class CandidatesServiceTest extends SpringJunitTestFixture {
@@ -57,15 +55,15 @@ public class CandidatesServiceTest extends SpringJunitTestFixture {
 	@Test
 	public void testGetAllGrades() throws Exception {
 		assertNotNull(candidatesService);
-		Set<Grade> result = candidatesService.getAllGrades();
+		Set<String> result = candidatesService.getAllGrades();
 
 		assertNotNull(result);
 		assertEquals(3, result.size());
 
-		Set<Grade> expected = new TreeSet<>();
-		expected.add(new Grade("consultant"));
-		expected.add(new Grade("foundation_2"));
-		expected.add(new Grade("registrar"));
+		Set<String> expected = new TreeSet<>();
+		expected.add("consultant");
+		expected.add("foundation_2");
+		expected.add("registrar");
 
 		assertEquals(expected, result);
 	}
@@ -73,17 +71,17 @@ public class CandidatesServiceTest extends SpringJunitTestFixture {
 	@Test
 	public void testGetAllSpecialties() throws Exception {
 		assertNotNull(candidatesService);
-		Set<Specialty> result = candidatesService.getAllSpecialties();
+		Set<String> result = candidatesService.getAllSpecialties();
 
 		assertNotNull(result);
 		assertTrue(result.size() > 0);
 
-		Set<Specialty> expected = new TreeSet<>();
-		expected.add(new Specialty("geriatrics"));
-		expected.add(new Specialty("neurology"));
-		expected.add(new Specialty("oncology"));
-		expected.add(new Specialty("paediatrics"));
-		expected.add(new Specialty("rheumatology"));
+		Set<String> expected = new TreeSet<>();
+		expected.add("geriatrics");
+		expected.add("neurology");
+		expected.add("oncology");
+		expected.add("paediatrics");
+		expected.add("rheumatology");
 
 		assertEquals(expected, result);
 	}

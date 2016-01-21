@@ -52,6 +52,13 @@ public class SearchParams {
 	}
 	
 	
+	@Override
+	public String toString() {
+		return "SearchParams [role=" + role + ", grade=" + grade + ", specialty=" + specialty + ", postcode=" + postcode
+				+ ", range=" + range + "]";
+	}
+
+
 	private String toLowerCase(String string) {
 		if (string != null)
 			return string.toLowerCase();

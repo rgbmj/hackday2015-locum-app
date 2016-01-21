@@ -12,7 +12,7 @@ import com.bmj.hackday.locumapp.model.bean.Specialty;
 
 public class SearchData implements Cloneable {
 	
-	private Map<Specialty, GradesData> data;
+	private Map<String, GradesData> data;
 
 	public SearchData() {
 		this.data = new TreeMap<>();
@@ -33,7 +33,7 @@ public class SearchData implements Cloneable {
 	
 	public SearchData addCandidate(UserDetail userDetail) {
 		String specialtyVal = userDetail.getSpecialty();
-		GradesData specialtyData = data.get(new Specialty(specialtyVal));
+		GradesData specialtyData = data.get(specialtyVal);
 		
 		if (specialtyData == null) 
 			addNewSpecialty(userDetail);
@@ -43,14 +43,6 @@ public class SearchData implements Cloneable {
 		return this;
 	}
 	
-	private void addNewSpecialty(UserDetail candidate) {
-		Specialty specialty = new Specialty(candidate.getSpecialty());
-
-		GradesData gradesData = new GradesData();
-		gradesData.addCandidate(candidate);
-		
-		data.put(specialty, gradesData);
-	}
 
 	@Override
 	public SearchData clone() {
@@ -59,8 +51,22 @@ public class SearchData implements Cloneable {
 		return clone;
 	}
 
-	public Set<Specialty> getAllSpecialties() {
+	public Set<String> getAllSpecialties() {
 		return new TreeSet<>(data.keySet());
 	}
 
+	@Override
+	public String toString() {
+		return "SearchData [data=" + data + "]";
+	}
+
+
+	private void addNewSpecialty(UserDetail candidate) {
+		String specialty = candidate.getSpecialty();
+		
+		GradesData gradesData = new GradesData();
+		gradesData.addCandidate(candidate);
+		
+		data.put(specialty, gradesData);
+	}
 }

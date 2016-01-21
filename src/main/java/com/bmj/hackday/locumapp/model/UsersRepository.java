@@ -12,8 +12,6 @@ import java.util.TreeSet;
 
 import org.springframework.stereotype.Component;
 
-import com.bmj.hackday.locumapp.model.bean.Grade;
-import com.bmj.hackday.locumapp.model.bean.Specialty;
 import com.bmj.hackday.locumapp.role.UserRole;
 
 @Component
@@ -123,16 +121,16 @@ public class UsersRepository {
 		doctorsSearchData.addCandidate(userDetail);
 	}
 
-	public Set<Grade> getAllHospitalsGrades() {
+	public Set<String> getAllHospitalsGrades() {
 		return getAllGrades(hospitalsSearchData);
 	}
 
-	public Set<Grade> getAllDoctorsGrades() {
+	public Set<String> getAllDoctorsGrades() {
 		return getAllGrades(doctorsSearchData);
 	}
 
-	private Set<Grade> getAllGrades(SearchData searchData) {
-		Set<Grade> grades = new TreeSet<>();
+	private Set<String> getAllGrades(SearchData searchData) {
+		Set<String> grades = new TreeSet<>();
 
 		List<GradesData> allGradesData = searchData.getAllGradesData();
 		for (GradesData gradesData : allGradesData)
@@ -141,11 +139,11 @@ public class UsersRepository {
 		return grades;
 	}
 
-	public Set<Specialty> getAllHospitalsSpecialties() {
+	public Set<String> getAllHospitalsSpecialties() {
 		return hospitalsSearchData.getAllSpecialties();
 	}
 
-	public Set<Specialty> getAllDoctorsSpecialties() {
+	public Set<String> getAllDoctorsSpecialties() {
 		return doctorsSearchData.getAllSpecialties();
 	}
 }
